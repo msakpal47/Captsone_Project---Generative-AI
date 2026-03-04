@@ -1,0 +1,45 @@
+Prerequisites
+
+- Python 3.10+ installed and on PATH
+- Internet access for first‑time model/dep downloads (or set OpenAI env to use API)
+Install
+
+- Open a terminal at the project root:
+  - E:\Data_Scientist_Project\Captsone_Project - Generative AI\Automotive_Sustainability
+- Create/activate a virtual env (optional but recommended).
+- Install backend deps:
+  - python -m pip install -r backend/requirements.txt
+Run the server
+
+- Start FastAPI with Uvicorn:
+  - python -m uvicorn backend.app:app --reload --host 0.0.0.0 --port 8080
+- Health check (optional): open http://127.0.0.1:8080/healthz
+Open the UI
+
+- In your browser open:
+  - http://localhost:8080/ui
+- Tip: use localhost or 127.0.0.1, not 0.0.0.0
+Use the app
+
+- Ingest:
+  - Click Ingest without a path to use the included Automotive_Sustainability.pdf
+  - Or paste a full path to a PDF and click Ingest
+- Ask questions:
+  - Type one question, or multiple questions separated by new lines or “;”
+  - Click Ask; answers and sources will appear above, Ask stays fixed at the bottom
+Optional: OpenAI mode
+
+- Create a .env in the project root with any of the following if you want to use OpenAI:
+  - OPENAI_API_KEY=your_key
+  - USE_OPENAI_LLM=1 (enable OpenAI for answers)
+  - USE_OPENAI_EMBEDDINGS=1 (use OpenAI embeddings)
+- The code reads these via config.py
+Run tests
+
+- From the project root:
+  - python -m unittest discover -s tests -p "test_*.py" -q
+Troubleshooting
+
+- “Service is unavailable” in the IDE preview: open http://localhost:8080/ui in your external browser.
+- Ingest fails first time: it may be downloading the sentence‑transformers model; keep the terminal open and try again after it finishes.
+- Port in use: change to another port, e.g., --port 8090 and load http://localhost:8090/ui .

@@ -1,0 +1,32 @@
+* { box-sizing: border-box; }
+body { font-family: system-ui, Arial, sans-serif; margin: 0; background: #0f1521; color: #e6e9ef; padding-bottom: 110px; }
+.container { max-width: 900px; margin: 0 auto; padding: 24px; }
+header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+h1 { font-size: 20px; margin: 0; }
+.controls { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 16px; }
+.ingest, .ask { display: flex; gap: 8px; }
+input, textarea { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #0b1220; color: #e6e9ef; }
+textarea { resize: vertical; min-height: 64px; }
+button { padding: 10px 14px; border-radius: 8px; border: none; background: #22c55e; color: #0b1220; font-weight: 600; cursor: pointer; }
+button:hover { background: #16a34a; }
+#chat { display: flex; flex-direction: column; gap: 10px; }
+.bubble { padding: 12px; border-radius: 10px; max-width: 70%; }
+.user { align-self: flex-end; background: #1d4ed8; }
+.assistant { align-self: flex-start; background: #334155; }
+.source { font-size: 12px; opacity: 0.8; margin-top: 6px; }
+
+.ask-fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 21, 33, 0.92);
+  border-top: 1px solid #334155;
+  backdrop-filter: blur(2px);
+  padding: 8px 0;
+}
+.ask-fixed .ask {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}

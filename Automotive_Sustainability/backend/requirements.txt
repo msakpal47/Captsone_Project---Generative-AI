@@ -1,0 +1,11 @@
+fastapi>=0.110.0
+uvicorn>=0.29.0
+langchain>=0.2.11
+langchain-community>=0.2.10
+langchain-openai>=0.2.0
+langchain-text-splitters>=1.1.0
+chromadb>=0.5.0
+python-dotenv>=1.0.1
+pydantic>=2.6.0
+sentence-transformers>=2.6.1
+pypdf>=4.3.0

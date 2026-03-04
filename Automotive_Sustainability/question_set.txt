@@ -1,0 +1,22 @@
+ere are 20 useful questions you can ask:
+
+- What are the main sources of lifecycle emissions for our vehicles?
+- Which strategies reduce fleet CO2e most cost‑effectively this year?
+- How does eco‑driving impact energy use on urban vs highway routes?
+- What charging schedule minimizes costs while protecting battery health?
+- Where are the biggest supply‑chain emission hotspots by component?
+- How can we improve EV battery circularity and end‑of‑life recovery?
+- What KPIs should we track for sustainability performance by fleet?
+- Which routes show the highest energy intensity and why?
+- How do lightweight materials affect LCA across production and use phases?
+- What are the trade‑offs between fast and overnight charging for TCO?
+- Which suppliers need priority engagement for Scope 3 reductions?
+- What renewable integration options best match our demand profile?
+- How does weather and traffic variability affect energy consumption?
+- What is the expected CO2e reduction from transitioning 20% of fleet to EVs?
+- Which depots need charging infrastructure upgrades first?
+- How can predictive maintenance reduce emissions and downtime together?
+- What data gaps limit our emissions accuracy and how to close them?
+- Which policies or incentives can we leverage for decarbonization?
+- What are the top three scenarios to reach a 30% emissions cut by 2027?
+- Summarize best practices for driver coaching to improve efficiency
