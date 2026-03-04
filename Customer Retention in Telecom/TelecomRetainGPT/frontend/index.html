@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TelecomRetainGPT</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>TelecomRetainGPT</h1>
+    <p>GenAI + RAG chatbot for Indian Telecom Customer Retention</p>
+    <div class="actions">
+      <a class="button" href="./chat.html">Open Chat</a>
+      <button id="ingestBtn">Build Index</button>
+    </div>
+    <div id="status"></div>
+  </div>
+  <script src="./js/api.js"></script>
+  <script>
+    const btn = document.getElementById('ingestBtn');
+    const status = document.getElementById('status');
+    btn.addEventListener('click', async () => {
+      status.textContent = 'Building index...';
+      try {
+        const res = await window.TelecomAPI.ingest();
+        status.textContent = `Chunks: ${res.chunks}, Vectors: ${res.vectors}, Saved: ${res.saved}`;
+      } catch (e) {
+        status.textContent = 'Ingest failed';
+      }
+    });
+  </script>
+</body>
+</html>

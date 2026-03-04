@@ -1,0 +1,53 @@
+Quick Start
+
+- Open PowerShell in this folder: e:\Data_Scientist_Project\Captsone_Project - Generative AI\Customer Retention in Telecom\TelecomRetainGPT
+- Create and activate a virtual environment:
+  
+  ```
+  python -m venv .venv
+  .venv\Scripts\Activate
+  ```
+- Install dependencies:
+  
+  ```
+  pip install -r backend/requirements.txt
+  ```
+- Start the dev server (Windows):
+  
+  ```
+  .\run.bat
+  ```
+- Open the app at http://localhost:8000/app/
+Optional Config
+
+- Edit .env for runtime options:
+  - OPENAI_API_KEY: leave empty to run fully local
+  - USE_OPENAI_EMBEDDINGS=0 and USE_OPENAI_CHAT=0 for local-only mode
+  - CHUNK_SIZE and CHUNK_OVERLAP adjust text chunking
+  - DATA_DIR and VECTOR_DIR set input and storage paths
+- .env is loaded by the backend at startup; defaults are safe for local use
+Ingest Data
+
+- Place PDFs/DOCX/TXT in either:
+  - backend/data
+  - the TelecomRetainGPT folder
+  - the project’s parent folder
+- In the UI ( http://localhost:8000/app/ ), click “Build Index” to ingest and vectorize
+- On success, vectors persist under storage/vector_data and survive server reloads
+API Endpoints
+
+- GET /health → returns server status and current index size
+- POST /api/ingest → builds/updates the index from available files
+- POST /api/chat → body: {"message": "...", "top_k": 4} returns answer + sources
+Troubleshooting
+
+- If the page aborts during reloads, always use the provided run script and access http://localhost:8000/app/
+- If chat errors with an API key issue, set USE_OPENAI_CHAT=0, or provide a valid key and set to 1
+- Scanned PDFs may need OCR; install Tesseract/Poppler to enable automatic OCR
+Useful References
+
+- Start script: run.bat
+- Backend app: app.py
+- Requirements: requirements.txt
+- Config loader: config.py
+- Project guide: read.md

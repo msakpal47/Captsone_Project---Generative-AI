@@ -1,0 +1,40 @@
+Sample Questions (30)
+
+- Strategy and Programs
+  - What are the top 5 prepaid retention strategies for Indian telcos?
+  - How should we prioritize retention offers for high‑ARPU prepaid users?
+  - What loyalty benefits reduce churn most for price‑sensitive segments?
+  - Which cross‑sell bundles work best for data‑heavy prepaid users?
+  - How can we design win‑back campaigns for 30–90 day inactive users?
+- Segmentation and Targeting
+  - How do we segment prepaid users by recharge behavior and tenure?
+  - Which micro‑segments have the highest near‑term churn risk?
+  - What signals indicate likely migration to a competitor in the next 30 days?
+  - How should we tailor retention messaging by language and region?
+  - Which channels (SMS, WhatsApp, app, IVR) perform best per segment?
+- Pricing and Packs
+  - What is the optimal pack price ladder to reduce downgrade churn?
+  - Which combo packs minimize recharges with competitor add‑ons?
+  - How often should we refresh pack benefits to stop benefit fatigue?
+  - What limited‑time offers reduce short‑term churn without margin loss?
+  - Which data‑only packs reduce silent churn among low talk‑time users?
+- Product and Experience
+  - What network experience thresholds correlate with churn spikes?
+  - How do app login frequency and session length predict churn?
+  - Which customer support issues most strongly precede churn?
+  - How does failed recharge experience impact churn risk?
+  - Which handset types show higher churn and why?
+- Campaigns and Measurement
+  - What is the best A/B testing setup to measure retention lift?
+  - Which KPIs should we track weekly for early churn signals?
+  - How do we compute incremental retention vs. cost per saved user?
+  - What attribution method should we use for multi‑channel campaigns?
+  - How to set guardrails to avoid offer cannibalization?
+- Compliance and Fair Use
+  - How to balance fair‑use policies with high‑value user retention?
+  - What safeguards avoid misuse of win‑back offers?
+- Forecasting and Modeling
+  - Which features most improve prepaid churn prediction accuracy?
+  - How to calibrate thresholds for high‑risk vs. medium‑risk users?
+  - How to monitor model drift in churn prediction over time?
+  - What uplift modeling approach picks the best users to target?

@@ -1,0 +1,20 @@
+Component,Purpose,Key Files,Interfaces/Commands,Notes
+Backend API,Serve endpoints and static app,"backend/app.py","GET /health; POST /api/ingest; POST /api/chat; /app",CORS enabled; mounts frontend
+Vector Store,Chunk text and index vectors,"backend/vector_store.py",Saved under storage/vector_data,"FAISS if available, otherwise NumPy fallback"
+Text Extraction,Robust PDF/DOCX/TXT extraction,"backend/vector_store.py","PyPDF→pdfminer→OCR(optional)",Skips files with no extracted text
+Embeddings,Create vector representations,"backend/embeddings.py",".env flags USE_OPENAI_EMBEDDINGS, OPENAI_EMBEDDING_MODEL",Falls back to deterministic hashing if OpenAI fails
+RAG Pipeline,Retrieve + answer,"backend/rag_pipeline.py","Uses OpenAI chat if USE_OPENAI_CHAT=1",Falls back to RAG answer if OpenAI unavailable
+Frontend,Simple UI for build/chat,"frontend/index.html, frontend/chat.html, frontend/js/*.js","Open /app",Same-origin API calls
+Config/Env,Central configuration,"backend/config.py, .env",CHUNK_SIZE, CHUNK_OVERLAP, paths,"VECTOR_DIR defaults to storage/vector_data"
+Run Scripts,Start dev server,"run.bat, run.sh","run.bat or ./run.sh",Reload limited to backend code
+Ingest Search Paths,Find files to index,"backend/vector_store.py","backend/data; project root; parent folder",Avoids moving files unnecessarily
+Storage,Index persistence,"storage/vector_data","store.index, meta.json",Not watched by dev server
+Dependencies,Runtime packages,"backend/requirements.txt","pip install -r backend/requirements.txt",Includes pdfminer, docx, pytesseract, pdf2image
+Sample Result,Validated counts after ingest,N/A,"chunks: 342, vectors: 342, saved: true",Actual counts depend on files and chunk size
+Flags,Runtime behavior,".env","USE_OPENAI_EMBEDDINGS, USE_OPENAI_CHAT",Set to 1 only with valid API key
+Endpoints,Health/ingest/chat,"backend/app.py","/health, /api/ingest, /api/chat",Chat returns JSON even on errors
+Troubleshooting,Abort fix and errors,N/A,"Use run scripts; view /health",net::ERR_ABORTED fixed by stable reload and storage path
+OCR,Scanned PDF support,"backend/vector_store.py","Requires Tesseract & Poppler","Attempted only if no text extracted"
+Chunking,Granularity of passages,"backend/config.py",".env CHUNK_SIZE=300, CHUNK_OVERLAP=50",Lower size ⇒ more chunks; higher size ⇒ fewer
+Security,Avoid leaked secrets,N/A,"Keep OPENAI_API_KEY out of repo",Read at runtime from environment
+Next Steps,Optional enhancements,N/A,"Enable OCR stack; enable OpenAI chat",Switch flags after verifying key
