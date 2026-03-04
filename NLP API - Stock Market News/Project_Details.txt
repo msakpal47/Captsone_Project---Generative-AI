@@ -1,0 +1,97 @@
+One‑Line Pitch
+
+- A lightweight Flask web app that analyzes real‑time stock news sentiment per ticker and visualizes sentiment and trend against price, with graceful offline fallbacks.
+Demo Flow
+
+- Start server: python server.py
+- Open http://127.0.0.1:5000/
+- Paste FINNHUB_API_KEY and save (optional; app still works with sample news).
+- Select a ticker (e.g., AAPL) and click Analyze to see:
+  - Sentiment counts + doughnut chart
+  - Daily trend lines
+  - Price chart for the selected symbol
+  - News table with per‑headline scores
+Architecture
+
+- Web server and routes: app.py
+- Data fetchers: news_fetcher.py , price_fetcher.py
+- NLP: preprocess.py , sentiment_model.py
+- UI: index.html , script.js
+- Entrypoint: server.py
+- Config & results: config.py , stock_sentiment_nlp/data, stock_sentiment_nlp/results
+Data Flow
+
+- Request arrives at “/” with a ticker.
+- News fetcher pulls company news from Finnhub (if key set) or uses sample headlines to keep UX functional.
+- Titles are normalized by the preprocessor and scored using VADER (compound score → Positive/Neutral/Negative).
+- Daily sentiment trend is aggregated; for a single ticker, price series is fetched for the last ~90 days (or demo series).
+- Results render via Jinja template; client JS draws charts with Chart.js.
+Key Components
+
+- Backend routes and UI rendering: app.py
+  - POST /: runs complete analysis path
+  - GET /api/test: sanity check with counts
+  - GET /api/ping, /api/routes: health and routing
+- News fetcher: news_fetcher.py
+  - Uses finnhub-python client when available; otherwise returns sample articles
+- Price fetcher: price_fetcher.py
+  - Returns date/close series from Finnhub or a demo series
+- NLP engine:
+  - Preprocess: preprocess.py (lowercase, strip punctuation/whitespace)
+  - Sentiment: sentiment_model.py (NLTK VADER; lazy‑download lexicon)
+NLP Approach
+
+- VADER (rule‑based lexicon) for news titles:
+  - Fast, no training required; robust to short headlines
+  - Labeling thresholds: compound > 0.05 → Positive; < −0.05 → Negative; else Neutral
+- Preprocessing keeps model input consistent and reduces noise.
+Frontend Behavior
+
+- Jinja renders data blocks into the page; script.js reads embedded JSON and draws:
+  - Doughnut sentiment chart
+  - Trend line chart by day
+  - Optional price chart for the ticker
+- “Test API” calls /api/test and prints JSON for fast validation.
+Configuration
+
+- Keys stored locally in stock_sentiment_nlp/data/config.json or via environment variable.
+- Current key in use: FINNHUB_API_KEY. NewsAPI support was intentionally removed for simplicity.
+Error Handling & Fallbacks
+
+- If Finnhub is unavailable or rate‑limited:
+  - News: sample headlines are used
+  - Price: deterministic demo series
+- UI still renders charts and allows interaction; key status is visible.
+Verification & Dev Utilities
+
+- server.py : local run
+- Quick checks:
+  - python -m stock_sentiment_nlp._route_test → exercises /api/test
+  - python -m stock_sentiment_nlp._verify → runs NLP + data fetch pipeline
+Security & Practices
+
+- No secrets committed; keys read from env or user input and saved locally.
+- External calls only to Finnhub via official SDK; timeouts and exception guards in fetchers.
+- Minimal dependencies for smaller surface area; clear separation of API, NLP, and UI.
+Performance
+
+- VADER inference is O(n) per headline; fast for typical batches (≤50).
+- Data fetching batched per symbol; price series limited to recent ~90 days.
+- Client‑side rendering keeps server responses small.
+Trade‑Offs & Alternatives
+
+- VADER vs. transformer sentiment: chose VADER for speed, ease, and zero model hosting; can upgrade to FinBERT for finance‑tuned sentiment if needed.
+- Removed NewsAPI to avoid multiple providers and simplify configuration.
+Future Extensions
+
+- Switchable sentiment backends (VADER/FinBERT).
+- Multi‑source aggregation with de‑duplication (if re‑adding providers).
+- Persistent DB for historical sentiment vs. price backtesting.
+- CI tests for route health and chart data integrity.
+Impact
+
+- Provides a quick, reliable signal of market mood around a ticker, with clean UX and operational resilience (fallbacks). Ideal for analysts and dashboards needing light integration and fast results.
+For a one‑page overview you can share with an interviewer:
+
+- Open project_summary.csv
+- Or the brief write‑up: read.md

@@ -1,0 +1,13 @@
+Component,Purpose,Key Files,Tech,Inputs,Outputs,Business Impact
+Backend App,Serve web UI and JSON APIs,"stock_sentiment_nlp/app.py | server.py",Flask,HTTP requests / form data,"Rendered HTML, JSON responses",Single entrypoint for UI and API
+News Fetcher,Fetch company news via Finnhub or sample fallback,stock_sentiment_nlp/api/news_fetcher.py,"finnhub-python, datetime",Ticker symbol,List of articles (title,url,published),"Provides inputs for sentiment analysis even without keys"
+Price Fetcher,Fetch historical close prices or fallback series,stock_sentiment_nlp/api/price_fetcher.py,"finnhub-python, datetime",Ticker symbol,"[{date, close}] series","Context for sentiment trend vs. price"
+NLP Preprocess,Normalize text for model,stock_sentiment_nlp/nlp_engine/preprocess.py,Regex,List of texts,Cleaned texts,Improves downstream sentiment quality
+Sentiment Model,Score and label sentiments with VADER,stock_sentiment_nlp/nlp_engine/sentiment_model.py,"NLTK/VADER",Texts,"counts {Positive,Negative,Neutral} + per-item scores","Core classification signal"
+Templates,Render interactive dashboard,stock_sentiment_nlp/templates/index.html,"Jinja2, Chart.js",Server context variables,HTML and charts,Clear visualization and UX
+Static Assets,Client interactivity and styles,"stock_sentiment_nlp/static/js/script.js | stock_sentiment_nlp/static/css/style.css","JavaScript/CSS",Embedded JSON data,Charts and interactions,Responsive and simple UI
+Config Store,Read/write local API key,"stock_sentiment_nlp/api/config.py | stock_sentiment_nlp/data/config.json",JSON/env,"Key name/value","FINNHUB_API_KEY only","Easy local configuration"
+Results,Persist last analysis,stock_sentiment_nlp/results/,JSON,"Counts, scores, articles",Reproducibility and offline review
+Utilities,Quick diagnostics/tests,"stock_sentiment_nlp/_verify.py | stock_sentiment_nlp/_route_test.py | stock_sentiment_nlp/_http_probe.py",Python,Symbols/HTTP,Console logs,Developer confidence and faster debugging
+Run Commands,Start development server,"server.py | python -m flask --app stock_sentiment_nlp.app run",CLI,N/A,"http://127.0.0.1:5000",One-command local run
+Dependencies,Python requirements,stock_sentiment_nlp/requirements.txt,pip,N/A,Installed libs,Reproducible environment

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Stock News Sentiment Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>AI Stock News Sentiment Analyzer</h1>
+    <div class="symbol-form">
+      <button type="button" id="test-api">Test API</button>
+      <span style="opacity:.8">Checks keys + sample data</span>
+    </div>
+    <pre id="test-output" style="background:#0e1a2a;color:#e0e6ed;padding:12px;border-radius:10px;display:none;"></pre>
+    <form method="post" action="/set_key" class="symbol-form">
+      <input type="text" name="api_key" placeholder="Enter Finnhub API key">
+      <button type="submit">Save Key</button>
+    </form>
+    {% if key_status %}
+    <div class="summary">
+      <div class="card positive">Finnhub: {{ 'On' if key_status['finnhub'] else 'Off' }}</div>
+    </div>
+    {% endif %}
+    <form method="post" class="symbol-form">
+      <select name="symbol_select" id="symbol-select">
+        <option value="" {{ 'selected' if (symbol_select or '') == '' else '' }}>Select symbol...</option>
+        <option value="_ALL" {{ 'selected' if (symbol_select or '') == '_ALL' else '' }}>All Top Symbols</option>
+        <option value="AAPL" {{ 'selected' if (symbol_select or '') == 'AAPL' else '' }}>AAPL</option>
+        <option value="TSLA" {{ 'selected' if (symbol_select or '') == 'TSLA' else '' }}>TSLA</option>
+        <option value="MSFT" {{ 'selected' if (symbol_select or '') == 'MSFT' else '' }}>MSFT</option>
+        <option value="AMZN" {{ 'selected' if (symbol_select or '') == 'AMZN' else '' }}>AMZN</option>
+        <option value="GOOGL" {{ 'selected' if (symbol_select or '') == 'GOOGL' else '' }}>GOOGL</option>
+        <option value="GOOG" {{ 'selected' if (symbol_select or '') == 'GOOG' else '' }}>GOOG</option>
+        <option value="NVDA" {{ 'selected' if (symbol_select or '') == 'NVDA' else '' }}>NVDA</option>
+        <option value="META" {{ 'selected' if (symbol_select or '') == 'META' else '' }}>META</option>
+        <option value="NFLX" {{ 'selected' if (symbol_select or '') == 'NFLX' else '' }}>NFLX</option>
+        <option value="AMD" {{ 'selected' if (symbol_select or '') == 'AMD' else '' }}>AMD</option>
+        <option value="INTC" {{ 'selected' if (symbol_select or '') == 'INTC' else '' }}>INTC</option>
+        <option value="JPM" {{ 'selected' if (symbol_select or '') == 'JPM' else '' }}>JPM</option>
+        <option value="BAC" {{ 'selected' if (symbol_select or '') == 'BAC' else '' }}>BAC</option>
+        <option value="WFC" {{ 'selected' if (symbol_select or '') == 'WFC' else '' }}>WFC</option>
+        <option value="V" {{ 'selected' if (symbol_select or '') == 'V' else '' }}>V</option>
+        <option value="MA" {{ 'selected' if (symbol_select or '') == 'MA' else '' }}>MA</option>
+        <option value="_CUSTOM" {{ 'selected' if (symbol_select or '') == '_CUSTOM' else '' }}>Custom...</option>
+      </select>
+      <input id="symbol-input" type="text" name="symbol" placeholder="Enter stock symbol (e.g., AAPL, TSLA)" value="{{ symbol or '' }}" required>
+      <button type="submit">Analyze</button>
+    </form>
+
+    {% if counts %}
+    <div class="summary">
+      <div class="card positive">Positive: {{ counts['Positive'] }}{% if percents %} ({{ percents['Positive'] }}%){% endif %}</div>
+      <div class="card negative">Negative: {{ counts['Negative'] }}{% if percents %} ({{ percents['Negative'] }}%){% endif %}</div>
+      <div class="card neutral">Neutral: {{ counts['Neutral'] }}{% if percents %} ({{ percents['Neutral'] }}%){% endif %}</div>
+    </div>
+
+    <div class="chart-box">
+      <canvas id="sentimentChart"></canvas>
+      <script id="sentiment-data" type="application/json">{{ dataset|tojson }}</script>
+    </div>
+
+    <div class="chart-box">
+      <canvas id="trendChart"></canvas>
+      <script id="trend-data" type="application/json">{{ trend|tojson }}</script>
+    </div>
+
+    {% if price %}
+    <div class="chart-box">
+      <canvas id="priceChart"></canvas>
+      <script id="price-data" type="application/json">{{ price|tojson }}</script>
+    </div>
+    {% endif %}
+
+    <h2>News Details</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Title</th>
+          <th>Published</th>
+          <th>Sentiment</th>
+          <th>Score</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for a in articles %}
+        {% set i = loop.index0 %}
+        <tr>
+          <td>{{ a.ticker or symbol }}</td>
+          <td>{{ a.title }}</td>
+          <td>{{ a.published or '' }}</td>
+          <td>{{ scores[i].label }}</td>
+          <td>{{ '%.3f'|format(scores[i].compound) }}</td>
+          <td><a href="{{ a.url }}" target="_blank">Open</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
