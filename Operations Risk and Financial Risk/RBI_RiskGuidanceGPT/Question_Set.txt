@@ -1,0 +1,47 @@
+Operational Risk (20 Questions)
+
+- 1. What is the RBI/Basel definition of operational risk and what events are included/excluded?
+- 2. Which categories (people, processes, systems, external events) fall under operational risk? Give examples for each.
+- 3. What are the Board and senior management responsibilities for the Operational Risk Management Framework (ORMF)?
+- 4. What must an ORMF policy contain and how frequently should it be reviewed?
+- 5. How should Key Risk Indicators (KRIs) be selected, thresholded, and escalated? What monitoring cadence is expected?
+- 6. What is the bank’s loss event taxonomy and how are incidents severity‑rated?
+- 7. What is the process and timeline for reporting material operational incidents to RBI?
+- 8. Which minimum data fields must be captured in the operational loss database and what is the retention period?
+- 9. How are near misses and timing losses recorded and treated in analytics and capital?
+- 10. What is the governance and frequency for scenario analysis (severe‑but‑plausible) in operational risk?
+- 11. What is the expected testing cadence for Business Continuity/Disaster Recovery (RPO/RTO, failover drills)?
+- 12. What due‑diligence, contracting, monitoring, and exit requirements apply to outsourcing/third‑party risk?
+- 13. What cyber/information security controls are mandated (e.g., MFA, encryption, logging) and how are exceptions handled?
+- 14. What is the fraud risk management framework (preventive/detective controls, maker‑checker, analytics, reporting)?
+- 15. What approvals and risk assessments are required in the New Product Approval Process (NPAP)?
+- 16. What change‑management controls apply to critical systems (segregation, testing, backout, emergency changes)?
+- 17. Under Basel III’s Standardized Measurement Approach (SMA), how is operational risk capital computed?
+- 18. How are insurance/other risk mitigants recognized (if at all) in operational risk capital per RBI guidance?
+- 19. What are internal audit’s coverage expectations for operational risk and minimum review periodicity?
+- 20. What should the Board/ROC receive in periodic operational risk MI (content, metrics, incidents, trends)?
+
+Financial Risk (20 Questions)
+
+- 1. What is the minimum capital adequacy (CRAR) under RBI Basel III and what are CET1, AT1, Tier 2 minima and buffers?
+- 2. How are Risk‑Weighted Assets (RWAs) computed in aggregate and where do standard risk weights come from (examples: sovereign, retail, CRE)?
+- 3. What credit risk mitigation techniques are eligible (collateral types, haircuts, guarantees) and how is substitution applied?
+- 4. What are RBI norms for NPA classification (dpd thresholds) and rules for upgradation/write‑back?
+- 5. What are provisioning/ECL requirements for NPAs (and Ind AS expectations where applicable)?
+- 6. What are Large Exposure Framework limits for single borrower and group exposures? Any exemptions?
+- 7. What restrictions apply to related‑party exposures and exposures to directors and their related entities?
+- 8. What sectoral/concentration limits and internal caps are expected from a prudential perspective?
+- 9. How are securitization exposures treated (risk retention, capital approach, recognition of tranches)?
+- 10. What is the current RBI approach for market risk capital (standardized/FRTB) and key components covered?
+- 11. How should Interest Rate Risk in the Banking Book (IRRBB) be measured and reported (ΔEVE/ΔNII, scenarios, thresholds)?
+- 12. What are the Liquidity Coverage Ratio (LCR) requirements and HQLA eligibility/outflow assumptions?
+- 13. What is the Net Stable Funding Ratio (NSFR) requirement and how are ASF/RSF factors applied?
+- 14. What ALM governance and gap/limits are expected (maturity ladder, interest rate sensitivity, escalation)?
+- 15. What are RBI expectations for firm‑wide stress testing (frequency, consolidation across risks, severity)?
+- 16. How are derivatives exposures measured for counterparty credit risk (EAD/PFE), and when do CVA capital and netting/CSA apply?
+- 17. What are the rules for investment classification (HTM/AFS/HFT) and constraints on reclassification?
+- 18. What are valuation and independent price verification (IPV) requirements for trading book instruments?
+- 19. What are the minimum requirements for internal credit rating systems (design, calibration, validation, back‑testing)?
+- 20. How are off‑balance‑sheet items converted to credit exposure (CCFs) for LCs, guarantees, and undrawn commitments?
+
+Completed

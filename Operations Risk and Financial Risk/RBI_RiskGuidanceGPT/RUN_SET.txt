@@ -1,0 +1,94 @@
+Prereqs
+
+- Windows with Python 3.10+ installed
+- PowerShell
+- Project path: E:\Data_Scientist_Project\Captsone_Project - Generative AI\Operations Risk and Financial Risk\RBI_RiskGuidanceGPT
+Setup
+
+- Create and activate a virtual environment:
+  
+  - PowerShell
+    
+    ```
+    cd "E:\Data_Scientist_Project\Captsone_Project - Generative 
+    AI\Operations Risk and Financial Risk\RBI_RiskGuidanceGPT"
+    python -m venv .venv
+    .\.venv\Scripts\Activate.ps1
+    ```
+- Install backend dependencies:
+  
+  ```
+  pip install -r backend/requirements.txt
+  ```
+- Environment configuration
+  
+  - .env is already included and auto-loaded by the backend. Defaults:
+    - DATA_DIR=backend/data
+    - INDEX_DIR=backend/faiss_index
+    - BACKEND_HOST=127.0.0.1
+    - BACKEND_PORT=8020
+    - HF_EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
+    - LOG_LEVEL=INFO
+Run The App
+
+- Start the FastAPI server:
+  
+  ```
+  python -m uvicorn backend.app:app --host 127.0.0.1 --port 8020 
+  --log-level info
+  ```
+- Open the UI at:
+  
+  - http://127.0.0.1:8020/ui/
+Index The PDFs
+
+- Click “Rebuild Index” in the UI
+- Or from PowerShell:
+  
+  ```
+  Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8020/
+  ingest -ContentType 'application/json' | ConvertTo-Json -Depth 6
+  ```
+- Verify status:
+  
+  ```
+  Invoke-WebRequest -UseBasicParsing http://127.0.0.1:8020/status
+  ```
+Quick Health Check
+
+- Confirm the backend is running:
+  
+  ```
+  Invoke-WebRequest -UseBasicParsing http://127.0.0.1:8020/health
+  ```
+- You should see: {"ok": true, "status": "running"}
+Using The App
+
+- Type your question in the bottom composer and click Send
+- Answers stream in live; sources appear under the assistant bubble
+- Click “Copy” to copy an answer or “Download PDF” to print/save the reply
+Troubleshooting
+
+- Port already in use:
+  
+  - Change port, e.g., 8030:
+    
+    ```
+    python -m uvicorn backend.app:app --host 127.0.0.1 --port 
+    8030 --log-level info
+    ```
+    Then open http://127.0.0.1:8030/ui/
+- Index shows “No chunks indexed”:
+  
+  - Ensure your PDFs are in backend/data
+  - Rebuild with the UI button or POST /ingest as above
+  - Check available PDFs:
+    
+    ```
+    Invoke-WebRequest -UseBasicParsing http://127.0.0.1:8020/
+    debug/pdfs
+    ```
+- Server not reachable:
+  
+  - Make sure the PowerShell window running uvicorn is still active
+  - Use the health check command above to confirm status

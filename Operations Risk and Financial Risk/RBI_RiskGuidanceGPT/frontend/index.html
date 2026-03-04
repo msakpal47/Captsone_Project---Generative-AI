@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RBI RiskGuidanceGPT</title>
+  <base href="/ui/">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>RBI RiskGuidanceGPT</h1>
+      <div id="status" class="status"></div>
+    </div>
+    <div class="controls" style="margin-bottom:8px;">
+      <a href="admin.html" class="btn secondary">Admin</a>
+    </div>
+    <div id="chat" class="chat"></div>
+    <div class="composer">
+      <textarea id="question" placeholder="Type a message"></textarea>
+      <div class="composer-actions">
+        <button id="ingestBtn" class="btn secondary">Rebuild Index</button>
+        <button id="askBtn" class="btn primary round">Send</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+ </html>

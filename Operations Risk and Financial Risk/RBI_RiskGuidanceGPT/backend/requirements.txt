@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+langchain
+langchain-text-splitters
+langchain-community
+faiss-cpu
+pypdf
+pdfplumber
+python-dotenv
+sentence-transformers
